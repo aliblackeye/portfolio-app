@@ -1,177 +1,118 @@
+"use client";
 import Image from "next/image";
 
-export default function Home() {
-  const skills = [
-    {
-      name: "HTML",
-      experience: "3",
-    },
-    {
-      name: "CSS",
-      experience: "3",
-    },
-    {
-      name: "JS",
-      experience: "2",
-    },
-    {
-      name: "React",
-      experience: "1",
-    },
-    {
-      name: "Next.js",
-      experience: "1",
-    },
-    {
-      name: "Scss",
-      experience: "1",
-    },
-  ];
+import { skills, projects, icons } from "./data";
+import { FaArrowDown } from "react-icons/fa";
 
-  const projects = [
-    {
-      name: "Project Name",
-      image: "/photo.png",
-      skills: ["HTML", "CSS"],
-    },
-    {
-      name: "Project Name",
-      image: "/photo.png",
-      skills: ["HTML", "CSS"],
-    },
-    {
-      name: "Project Name",
-      image: "/photo.png",
-      skills: ["HTML", "CSS"],
-    },
-    {
-      name: "Project Name",
-      image: "/photo.png",
-      skills: ["HTML", "CSS"],
-    },
-    {
-      name: "Project Name",
-      image: "/photo.png",
-      skills: ["HTML", "CSS"],
-    },
-    {
-      name: "Project Name",
-      image: "/photo.png",
-      skills: ["HTML", "CSS"],
-    },
-  ];
+export default function Home() {
+  window.document.addEventListener("mousemove", (e) => {
+    const cursor = document.querySelector(".cursor");
+    cursor.style.left = `${e.pageX}px`;
+    cursor.style.top = `${e.pageY}px`;
+  });
 
   return (
     <section className="single-page-portfolio">
-      <header className="header">
-        <div className="brand">
-          <h1>aliblackeye</h1>
-        </div>
+      <div className="top-wrapper container">
+        <header className="header">
+          <div className="container">
+            <div className="brand">
+              <h1>aliblackeye</h1>
+            </div>
 
-        <ul className="socials">
-          <li className="social-item">icon</li>
-          <li className="social-item">icon</li>
-          <li className="social-item">icon</li>
-          <li className="social-item">icon</li>
-        </ul>
-      </header>
-
-      <section className="hero-section">
-        <h1>Nice to meet you!</h1>
-        <h1>{`I'm Ali Karagoz.`}</h1>
-
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
-          laborum sunt doloribus culpa explicabo voluptas quod voluptates
-          architecto magni veniam.
-        </p>
-
-        <button>DOWNLOAD CV</button>
-      </section>
-
-      <section className="skills">
-        {skills.map((skill, index) => (
-          <div className="skill-item" key={index}>
-            <h1>{skill.name}</h1>
-            <span>{skill.experience} Years Experience</span>
+            <ul className="socials">
+              {icons?.map((iconItem, index) => (
+                <li
+                  key={index}
+                  className="social-item"
+                >
+                  {iconItem.icon}
+                </li>
+              ))}
+            </ul>
           </div>
-        ))}
+        </header>
+
+        <section className="hero">
+          <div className="container">
+            <div className="title">
+              <h1>
+                Nice to <br /> meet you!
+              </h1>
+              <h1>
+                <span className="underline"> {` I'm `} Ali Karagoz.</span>
+              </h1>
+            </div>
+
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
+              laborum sunt doloribus culpa explicabo voluptas quod voluptates
+              architecto magni veniam.
+            </p>
+
+
+          </div>
+        </section>
+        <Image
+          src={"/photo.png"}
+          width={350}
+          height={550}
+          alt="person"
+          className="person"
+        />
+      </div>
+
+      <section className="skills-section">
+        <div className="container">
+          {skills.map((skill, index) => (
+            <div
+              className="skill-item"
+              key={index}
+            >
+              <h1>{skill.name}</h1>
+              <span>{skill.experience} Years Experience</span>
+            </div>
+          ))}
+        </div>
       </section>
 
       <section className="projects">
-        {projects.map((project, index) => (
-          <div
-            className="project-item"
-            key={index}
-          >
-            <div className="project-image">
-              <Image
-                src={project.image}
-                width={400}
-                height={650}
-                alt="person"
-              />
-            </div>
-            <div className="project-content">
-              <h1>{project.name}</h1>
-              <div className="skills">
-                {project?.skills?.map((skill, index) => (
-                  <span
-                    className="skill-item"
-                    key={index}
-                  >
-                    {skill}
-                  </span>
-                ))}
+        <div className="container">
+          <h1 className="projects-title">Projects</h1>
+          <div className="projects-container">
+            {projects.map((project, index) => (
+              <div
+                className="project-item"
+                key={index}
+              >
+                <div className="project-image">
+                  <Image
+                    src={project.image}
+                    width={200}
+                    height={200}
+                    alt="person"
+                  />
+                </div>
+                <div className="project-content">
+                  <h1>{project.name}</h1>
+                  <div className="skills">
+                    {project?.skills?.map((skill, index) => (
+                      <span
+                        className="skill-item"
+                        key={index}
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
-        ))}
+        </div>
       </section>
 
-      <footer>
-        <div className="footer-content">
-          <div className="left">
-            <h1>Contact</h1>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit
-              quas non nemo expedita perspiciatis odio atque omnis, earum sint
-              voluptatem?
-            </p>
-          </div>
-          <form className="right">
-            <input
-              type="text"
-              placeholder="Name"
-            />
-            <input
-              type="text"
-              placeholder="Email"
-            />
-            <textarea placeholder="Message"></textarea>
-            <button>SEND MESSAGE</button>
-          </form>
-        </div>
-        <div className="footer-bottom">
-          <div className="brand">
-            <h2>aliblackeye</h2>
-          </div>
 
-          <ul className="socials">
-            <li className="social-item">icon</li>
-            <li className="social-item">icon</li>
-            <li className="social-item">icon</li>
-            <li className="social-item">icon</li>
-          </ul>
-        </div>
-      </footer>
-
-      <Image
-        src={"/photo.png"}
-        width={400}
-        height={650}
-        alt="person"
-      />
     </section>
   );
 }
