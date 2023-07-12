@@ -3,14 +3,16 @@ import Image from "next/image";
 
 import { skills, projects, icons } from "./data";
 import { FaArrowDown } from "react-icons/fa";
+import { useEffect } from "react";
 
 export default function Home() {
-  window.document.addEventListener("mousemove", (e) => {
-    const cursor = document.querySelector(".cursor");
-    cursor.style.left = `${e.pageX}px`;
-    cursor.style.top = `${e.pageY}px`;
-  });
-
+  useEffect(() => {
+    window.document.addEventListener("mousemove", (e) => {
+      const cursor = document.querySelector(".cursor");
+      cursor.style.left = `${e.pageX}px`;
+      cursor.style.top = `${e.pageY}px`;
+    });
+  }, []);
   return (
     <section className="single-page-portfolio">
       <div className="top-wrapper container">
@@ -49,8 +51,6 @@ export default function Home() {
               laborum sunt doloribus culpa explicabo voluptas quod voluptates
               architecto magni veniam.
             </p>
-
-
           </div>
         </section>
         <Image
@@ -111,8 +111,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-
     </section>
   );
 }
